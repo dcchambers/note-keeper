@@ -1,6 +1,12 @@
 # note-keeper
 A tiny script for taking and organizing notes.
 
+:question: Why use this instead of just typing `vim /path/to/my/note.md` ?
+* Type fewer characters.
+* Print a note or print information about a note easily.
+* Open the same note from anywhere.
+* Automatically organizes notes with a sane directory structure.
+
 # Installation
 Note Keeper is a tiny shell script.  
 * Simply download the script file.
