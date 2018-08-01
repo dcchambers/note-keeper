@@ -31,23 +31,23 @@ key="$1"
 case $key in
     -e|--edit)
     printf "TODO: -e\n"
-    shift
-    shift
+    #shift
+    #shift
     exit 0
     ;;
     -p|--print)
     cat $note_path
-    shift
+    #shift
     exit 0
     ;;
     -c|--create)
     create_note
-    shift
+    #shift
     exit 0
     ;;
     -i|--info)
     print_info
-    shift
+    #shift
     exit 0
     ;;
     -h|--help)
@@ -62,9 +62,6 @@ Arguments:
     -c | --create                       Create a note but don't open it for editing.
     -i | --info                         Print information about a note.\n"
     exit 0
-    ;;
-    '')
-    exit 1
     ;;
     *)
     printf "Unknown Argument \"$1\"\n"
