@@ -33,11 +33,13 @@ case $key in
     ;;
     -c|--create)
     create_note
+    shift
     exit 0
     ;;
     -i|--info)
     printf "TODO: -i\n"
     shift
+    exit 0
     ;;
     -h|--help)
     printf "note - Note Keeper 0.1 (01 Aug 2018)
