@@ -16,16 +16,16 @@ at ~/notes/$year/$month/$day.md if one does not exist, and will open that
 note file in Vim.
 
 * `-c`
-Use the `-c` flag to create a note without opening it.
+  * Use the `-c` flag to create a note without opening it.
 
 * `-v`
-Use the `-v` flag to print the contents of the note.
+  * Use the `-v` flag to print the contents of the note.
 
 * `-i`
-Use the `-i` flag to print information about a note.
+  * Use the `-i` flag to print information about a note.
 
-* `-e` [<DATE>]
-Use the `-e` flag with a DATE argument to edit a note from a specific date.
+* `-e` [\<DATE\>]
+  * Use the `-e` flag with a DATE argument to edit a note from a specific date.
 
 * `-h`
-Use the `-h` flag to print usage information.
+  * Use the `-h` flag to print usage information.
