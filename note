@@ -68,4 +68,4 @@ done
 
 create_note
 
-vim $note_path
+vim "+normal G$" +startinsert $note_path
