@@ -34,8 +34,9 @@ case $key in
     shift
     ;;
     *)
-    echo "Unknown Argument."
-    shift
+    echo "Unknown Argument \"$1\""
+    echo "Try \"note --help\" to see usage information."
+    exit 0
     ;;
 esac
 done
