@@ -3,7 +3,10 @@ A tiny script for taking and organizing notes.
 
 # Installation
 Note Keeper is a tiny shell script.  
-Simply download the file, make it executable with `chmod +x` and add it to your `path`.
+* Simply download the script file.
+* Place it somewhere nice (like `/usr/local/bin/`).
+* Make it executable with `chmod +x`
+* Add it to your `path` if necessary (e.g. `export PATH=$PATH:~/usr/local/bin`)
 
 # Usage
 
