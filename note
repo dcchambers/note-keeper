@@ -8,7 +8,15 @@ create_note () {
         printf "Created new note: $note_path\n"
     else
         printf "Note \"$note_path\" already exists.\n"
-    fi 
+    fi
+}
+
+print_info () {
+    printf "Note preview:\n--------------------\n\n"
+    head -n 8 $note_path
+    printf "\n--------------------\n"
+    printf "Note Stats:"
+    stat -x $note_path
 }
 
 year=`date +'%Y'`
@@ -30,7 +38,7 @@ case $key in
     -p|--print)
     cat $note_path
     shift
-    exit 0 
+    exit 0
     ;;
     -c|--create)
     create_note
@@ -38,7 +46,7 @@ case $key in
     exit 0
     ;;
     -i|--info)
-    printf "TODO: -i\n"
+    print_info
     shift
     exit 0
     ;;
