@@ -15,17 +15,17 @@ Note Keeper is a tiny shell script.
 at ~/notes/$year/$month/$day.md if one does not exist, and will open that
 note file in Vim.
 
-* `-c`
+* `-c | --create`
   * Use the `-c` flag to create a note without opening it.
 
-* `-v`
+* `-p | --print`
   * Use the `-v` flag to print the contents of the note.
 
-* `-i`
+* `-i | --info`
   * Use the `-i` flag to print information about a note.
 
-* `-e` [\<DATE\>]
+* `-e | --edit <Date>`
   * Use the `-e` flag with a DATE argument to edit a note from a specific date.
 
-* `-h`
+* `-h | --help`
   * Use the `-h` flag to print usage information.
