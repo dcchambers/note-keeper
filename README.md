@@ -11,8 +11,16 @@ A tiny script for taking and organizing simple text notes.
 * Automatically organizes notes with a sane directory structure.
 
 # Installation
-Note Keeper is a tiny shell script.  
-* Simply download the script file.
+Note Keeper is a tiny shell script.
+
+## EZ Install
+Run this command in your terminal: `curl https://raw.githubusercontent.com/dcchambers/note-keeper/master/install.sh | bash`
+* :warning: Always be careful when using `curl | bash` to install a
+program/script. Read through the source code to make sure nothing malicious is
+happening. This install script is easy...it's just 2 lines :wink:
+
+## Manual Install
+* Simply download the `note` script file.
 * Place it somewhere nice (like `/usr/local/bin/`).
 * Make it executable with `chmod +x`
 * Add it to your `path` if necessary (e.g. `export PATH=$PATH:/usr/local/bin`)
@@ -31,7 +39,6 @@ note file in Vim.
   * Use the `-v` flag to print the contents of the note.
 
 * `-i | --info`
-  * :warning: Not yet implemented!
   * Use the `-i` flag to print information about a note.
 
 * `-e | --edit <Date>`
