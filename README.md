@@ -6,7 +6,8 @@ Note Keeper is a tiny shell script.
 * Simply download the script file.
 * Place it somewhere nice (like `/usr/local/bin/`).
 * Make it executable with `chmod +x`
-* Add it to your `path` if necessary (e.g. `export PATH=$PATH:~/usr/local/bin`)
+* Add it to your `path` if necessary (e.g. `export PATH=$PATH:/usr/local/bin`)
+* You can then run the script anywhere by simply typing `note` at the command line.
 
 # Usage
 
