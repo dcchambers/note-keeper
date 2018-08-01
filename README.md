@@ -22,9 +22,11 @@ note file in Vim.
   * Use the `-v` flag to print the contents of the note.
 
 * `-i | --info`
+  * :warning: Not yet implemented!
   * Use the `-i` flag to print information about a note.
 
 * `-e | --edit <Date>`
+  * :warning: Not yet implemented!
   * Use the `-e` flag with a DATE argument to edit a note from a specific date.
 
 * `-h | --help`
