@@ -4,8 +4,8 @@ create_note () {
     if [ ! -f $note_path ]; then
         mkdir -p ~/notes/$year/$month/
         touch $note_path
-        echo "$day-$month-$year\n---\n" > $note_path
-        printf "Created new note: $note_path"
+        printf "$day-$month-$year\n---\n" > $note_path
+        printf "Created new note: $note_path\n"
     else
         printf "Note \"$note_path\" already exists.\n"
     fi 
