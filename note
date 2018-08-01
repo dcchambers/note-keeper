@@ -11,6 +11,7 @@ case $key in
     -e|--edit)
     echo "TODO: -e"
     shift
+    shift
     ;;
     -p|--print)
     echo "TODO: -v"
@@ -30,17 +31,12 @@ case $key in
 Usage: note [arguments]
 
 Arguments:
-    -h | --help     Display usage guide.
-    -e | --edit     Create and open a note for editing (default).
-    -p | --print    Print the contents of a note.
-    -c | --create   Create a note but don't open it for editing.
-    -i | --info     Print information about a note."
+    -h | --help                         Display usage guide.
+    -e | --edit <DATE: year-month-day>  Open a specific note for editing.
+    -p | --print                        Print the contents of a note.
+    -c | --create                       Create a note but don't open it for editing.
+    -i | --info                         Print information about a note."
     exit 0
-    ;;
-    -e|--edit)
-    echo "TODO: -e"
-    shift
-    shift
     ;;
     *)
     echo "Unknown Argument \"$1\""
