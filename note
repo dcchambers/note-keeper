@@ -49,7 +49,7 @@ Arguments:
     -e | --edit <DATE: year-month-day>  Open a specific note for editing.
     -p | --print                        Print the contents of a note.
     -c | --create                       Create a note but don't open it for editing.
-    -i | --info                         Print information about a note."
+    -i | --info                         Print information about a note.\n"
     exit 0
     ;;
     *)
