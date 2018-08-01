@@ -2,4 +2,4 @@
 
 # Simple Install Script
 
-curl -o /usr/local/bin https://raw.githubusercontent.com/dcchambers/note-keeper/master/note
+curl -o /usr/local/bin/note https://raw.githubusercontent.com/dcchambers/note-keeper/master/note
