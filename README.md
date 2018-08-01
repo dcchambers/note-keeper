@@ -1,7 +1,7 @@
 # note-keeper
 A tiny script for taking and organizing simple text notes.
 * Write a TODO list.
-* Use as a copy/paste keyboard.
+* Use as a copy/paste clipboard.
 * Make ASCII art. :)
 
 :question: Why use this instead of just typing `vim /path/to/my/note.md` ?
