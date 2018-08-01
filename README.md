@@ -29,3 +29,7 @@ note file in Vim.
 
 * `-h | --help`
   * Use the `-h` flag to print usage information.
+
+# Demo
+
+[![asciicast](https://asciinema.org/a/194428.png)](https://asciinema.org/a/194428)
