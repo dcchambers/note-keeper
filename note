@@ -3,6 +3,39 @@ year=`date +'%Y'`
 month=`date +'%m'`
 day=`date +'%d'`
 
+POSITIONAL=()
+while [[ $# -gt 0 ]]
+do
+key="$1"
+
+case $key in
+    -e|--edit)
+    echo "TODO: -e"
+    shift
+    ;;
+    -v|--verbose)
+    echo "TODO: -v"
+    shift
+    ;;
+    -c|--create)
+    echo "TODO: -c"
+    shift
+    ;;
+    -i|--info)
+    echo "TODO: -i"
+    shift
+    ;;
+    -h|--help)
+    echo "TODO: -h"
+    shift
+    ;;
+    *)
+    echo "Unknown Argument."
+    shift
+    ;;
+esac
+done
+
 if [ ! -f ~/notes/$year/$month/$day.md ]; then
     mkdir -p ~/notes/$year/$month/
     touch ~/notes/$year/$month/$day.md
