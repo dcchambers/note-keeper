@@ -12,7 +12,7 @@ case $key in
     echo "TODO: -e"
     shift
     ;;
-    -v|--verbose)
+    -p|--print)
     echo "TODO: -v"
     shift
     ;;
@@ -25,8 +25,17 @@ case $key in
     shift
     ;;
     -h|--help)
-    echo "TODO: -h"
-    shift
+    echo "note - Note Keeper 0.1 (01 Aug 2018)
+
+Usage: note [arguments]
+
+Arguments:
+    -h | --help     Display usage guide.
+    -e | --edit     Create and open a note for editing (default).
+    -p | --print    Print the contents of a note.
+    -c | --create   Create a note but don't open it for editing.
+    -i | --info     Print information about a note."
+    exit 0
     ;;
     -e|--edit)
     echo "TODO: -e"
