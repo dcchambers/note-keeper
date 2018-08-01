@@ -3,7 +3,6 @@ year=`date +'%Y'`
 month=`date +'%m'`
 day=`date +'%d'`
 
-POSITIONAL=()
 while [[ $# -gt 0 ]]
 do
 key="$1"
@@ -27,6 +26,11 @@ case $key in
     ;;
     -h|--help)
     echo "TODO: -h"
+    shift
+    ;;
+    -e|--edit)
+    echo "TODO: -e"
+    shift
     shift
     ;;
     *)
