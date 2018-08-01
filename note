@@ -1,1 +1,13 @@
 #!/bin/sh
+year=`date +'%Y'`
+month=`date +'%m'`
+day=`date +'%d'`
+
+if [ ! -f ~/notes/$year/$month/$day.md ]; then
+    mkdir -p ~/notes/$year/$month/
+    touch ~/notes/$year/$month/$day.md
+    echo "$day-$month-$year\n---" > ~/notes/$year/$month/$day.md
+    echo "Created new note: ~/notes/$year/$month/$day.md"
+fi
+
+vim ~/notes/$year/$month/$day.md
