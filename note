@@ -19,6 +19,19 @@ print_info () {
     stat -x $note_path
 }
 
+print_help () {
+    printf "note - Note Keeper 0.2 (01 Aug 2018)
+
+Usage: note [arguments]
+
+Arguments:
+  -h | --help                         Display usage guide.
+  -e | --edit <DATE: year-month-day>  Open a specific note for editing.
+  -p | --print                        Print the contents of a note.
+  -c | --create                       Create a note but don't open it for editing.
+  -i | --info                         Print information about a note.\n"
+}
+
 year=`date +'%Y'`
 month=`date +'%m'`
 day=`date +'%d'`
@@ -51,16 +64,7 @@ case $key in
     exit 0
     ;;
     -h|--help)
-    printf "note - Note Keeper 0.1 (01 Aug 2018)
-
-Usage: note [arguments]
-
-Arguments:
-    -h | --help                         Display usage guide.
-    -e | --edit <DATE: year-month-day>  Open a specific note for editing.
-    -p | --print                        Print the contents of a note.
-    -c | --create                       Create a note but don't open it for editing.
-    -i | --info                         Print information about a note.\n"
+    print_help
     exit 0
     ;;
     *)
