@@ -33,7 +33,15 @@ Arguments:
 }
 
 open_note () {
-    vim "+normal G$" +startinsert $note_path
+    if [[ $EDITOR = *"vim"* ]]; then
+        # Open Vim in insert mode.
+        vim "+normal G$" +startinsert $note_path
+    elif [[ $EDITOR = "" ]]; then
+        # If no default editor, use Vim and open in insert mode.
+        vim "+normal G$" +startinsert $note_path
+    else
+        $EDITOR $note_path
+    fi
 }
 
 year=`date +'%Y'`
