@@ -1,5 +1,8 @@
 # note-keeper
 A tiny script for taking and organizing simple text notes.
+
+![gif](https://i.imgur.com/z70PRhk.gif)
+
 * Write a TODO list.
 * Use as a copy/paste clipboard.
 * Make ASCII art. :)
