@@ -55,7 +55,7 @@ note file in Vim.
 
 [![asciicast](https://asciinema.org/a/194428.png)](https://asciinema.org/a/194428)
 
-# File Organization 
+# File Organization
 
 ```
 $ tree ~/notes
@@ -71,7 +71,8 @@ $ tree ~/notes
 
 # Configuration
 
-* The default editor is *vim*.
-  * To change your editor, edit the `open_note` function. Change line 36 to launch your preferred editor (Nano, Emacs, Atom, etc).
+* The default editor is set by your `$EDITOR` environment variable.
+  * If no default editor is set, it will use *Vim*.
+    * It opens *vim* in insert mode.
 * The default location to store notes is in the `~/notes/` directory.
   * To change this, edit the variable `$note_path` on line 42, and edit the `mkdir` command in the `create_note` function, line 5.
