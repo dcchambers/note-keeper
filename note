@@ -23,7 +23,7 @@ print_info () {
 }
 
 print_help () {
-    printf "note - Note Keeper 0.2 (01 Aug 2018)
+    printf "note - Note Keeper 0.3 (02 Aug 2018)
 
 Usage: note [arguments]
 
