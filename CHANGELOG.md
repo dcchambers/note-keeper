@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v0.3.0 - 02 Aug 2018
+* By default it now opens a note using $EDITOR.
+  * If no $EDITOR is set, it uses Vim.
+  * If Vim is set as the default $EDITOR, it opens Vim in insert mode.
+* Fixed stat output on Ubuntu/Linux machines.
+* Added more information to `note -i` output.
+* Added a success echo to install script.
+
 ## v0.2.1 - 01 Aug 2018
 * Add ability to parse multiple command line arguments.
 * Add graceful error handling with command line arguments.
