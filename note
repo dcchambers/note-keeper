@@ -12,11 +12,14 @@ create_note () {
 }
 
 print_info () {
-    printf "Note preview:\n--------------------\n\n"
+    printf "Note preview:\n====================\n\n"
     head -n 8 $note_path
-    printf "\n--------------------\n"
-    printf "Note Stats:"
-    stat -x $note_path
+    printf "\n====================\n"
+    printf "Note Stats:\n"
+    stat $note_path
+    printf "\n====================\n"
+    printf "File Information:\n"
+    ls -lah $note_path
 }
 
 print_help () {
