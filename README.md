@@ -55,6 +55,20 @@ note file in Vim.
 
 [![asciicast](https://asciinema.org/a/194428.png)](https://asciinema.org/a/194428)
 
+# File Organization 
+
+```
+$ tree ~/notes
+/home/username/notes
+└── 2018
+    ├── 07
+    │   └── 31.md
+    └── 08
+        ├── 01.md
+        └── 02.md
+
+```
+
 # Configuration
 
 * The default editor is *vim*.
