@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## v0.2.1 - 01 Aug 2018
+* Add ability to parse multiple command line arguments.
+* Add graceful error handling with command line arguments.
+* Reformat and beautify code.
+
 ## v0.2.0 - 01 Aug 2018
 * Add `install.sh` script for easy installation.
 * Enable `-i|--info` argument to print information about a note.
