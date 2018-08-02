@@ -32,49 +32,50 @@ Arguments:
   -i | --info                         Print information about a note.\n"
 }
 
+open_note () {
+    vim "+normal G$" +startinsert $note_path
+}
+
 year=`date +'%Y'`
 month=`date +'%m'`
 day=`date +'%d'`
 note_path=~/notes/$year/$month/$day.md
 
-while [[ $# -gt 0 ]]
-do
-key="$1"
-
-case $key in
-    -e|--edit)
-    printf "TODO: -e\n"
-    #shift
-    #shift
-    exit 0
-    ;;
-    -p|--print)
-    cat $note_path
-    #shift
-    exit 0
-    ;;
-    -c|--create)
+if (( $# > 0 )); then
+    while [[ $# -gt 0 ]]
+    do
+        key="$1"
+        case $key in
+            -e|--edit)
+            printf "(e)dit is not yet implemented :(\n"
+            #shift
+            #shift
+            exit 0
+            ;;
+            -p|--print)
+            cat $note_path
+            shift
+            ;;
+            -c|--create)
+            create_note
+            shift
+            ;;
+            -i|--info)
+            print_info
+            shift
+            ;;
+            -h|--help)
+            print_help
+            shift
+            ;;
+            *)
+            printf "Unknown Argument \"$1\"\n"
+            printf "Try \"note --help\" to see usage information.\n"
+            shift
+            ;;
+        esac
+    done
+else
     create_note
-    #shift
-    exit 0
-    ;;
-    -i|--info)
-    print_info
-    #shift
-    exit 0
-    ;;
-    -h|--help)
-    print_help
-    exit 0
-    ;;
-    *)
-    printf "Unknown Argument \"$1\"\n"
-    printf "Try \"note --help\" to see usage information.\n"
-    exit 0
-    ;;
-esac
-done
-
-create_note
-
-vim "+normal G$" +startinsert $note_path
+    open_note
+fi
