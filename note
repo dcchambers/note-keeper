@@ -41,7 +41,7 @@ open_note () {
         $EDITOR "+normal G$" +startinsert $note_path
     elif [[ $EDITOR = *"emacs"* ]]; then
         # If no default editor, use Vim and open in insert mode.
-        emacs -nw $note_path
+        emacs -nw $note_path --eval "(goto-char (point-max))"
     elif [[ $EDITOR = "" ]]; then
         # If no default editor, use Vim and open in insert mode.
         vim "+normal G$" +startinsert $note_path
