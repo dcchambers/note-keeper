@@ -17,7 +17,11 @@ A tiny script for taking and organizing simple text notes.
 Note Keeper is a tiny shell script.
 
 ## EZ Install
-Run this command in your terminal: `curl https://raw.githubusercontent.com/dcchambers/note-keeper/master/install.sh | bash`
+Run this command in your terminal:  
+`curl https://raw.githubusercontent.com/dcchambers/note-keeper/master/install.sh | bash`  
+
+:bulb: Get a `permission denied` error? You might need to run the script with `sudo`. Try this:  
+`curl https://raw.githubusercontent.com/dcchambers/note-keeper/master/install.sh | sudo bash`  
 * :warning: Always be careful when using `curl | bash` to install a
 program/script. Read through the source code to make sure nothing malicious is
 happening. This install script is easy...it's just 2 lines :wink:
