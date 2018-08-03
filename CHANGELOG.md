@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.3.1 - 02 Aug 2018
+* Add support for Neovim (Thanks for the PR [@jonathandion](https://github.com/jonathandion)!
+
 ## v0.3.0 - 02 Aug 2018
 * By default it now opens a note using $EDITOR.
   * If no $EDITOR is set, it uses Vim.
