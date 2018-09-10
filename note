@@ -40,7 +40,7 @@ open_note () {
         # Open Vim or Neovim in insert mode.
         $EDITOR "+normal G$" +startinsert $note_path
     elif [[ $EDITOR = *"emacs"* ]]; then
-        # If no default editor, use Vim and open in insert mode.
+        # Open Emacs with cursor at EOF.
         emacs -nw $note_path --eval "(goto-char (point-max))"
     elif [[ $EDITOR = "" ]]; then
         # If no default editor, use Vim and open in insert mode.
