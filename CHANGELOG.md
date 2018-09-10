@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.3.2 - 10 Sep 2018
+* Add support for Emacs (Thanks for the PR [@alkc](https://github.com/alkc)!
+  * Opens Emacs with cursor at EOF.
+
 ## v0.3.1 - 02 Aug 2018
 * Add support for Neovim (Thanks for the PR [@jonathandion](https://github.com/jonathandion)!
 
