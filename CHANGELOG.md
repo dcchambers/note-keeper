@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.3.3 - 14 Feb 2019
+* Fix a bug where vim opened in insert mode but didn't place cursor at end of file.
+
 ## v0.3.2 - 10 Sep 2018
 * Add support for Emacs (Thanks for the PR [@alkc](https://github.com/alkc))!
   * Opens Emacs with cursor at EOF.
