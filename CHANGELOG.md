@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.3.4 - 14 Feb 2019
+* Alter text printed to terminal when a user opens an existing note to be friendlier
+and more informative.
+
 ## v0.3.3 - 14 Feb 2019
 * Fix a bug where vim opened in insert mode but didn't place cursor at end of file.
 
