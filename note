@@ -7,7 +7,7 @@ create_note () {
         printf "$day-$month-$year\n---\n\n" > $note_path
         printf "Created new note: $note_path\n"
     else
-        printf "Note \"$note_path\" already exists.\n"
+        printf "Note \"$note_path\" already exists. Saving changes to existing file.\n"
     fi
 }
 
@@ -23,7 +23,7 @@ print_info () {
 }
 
 print_help () {
-    printf "note - Note Keeper 0.3.3 (14 Feb 2019)
+    printf "note - Note Keeper 0.3.4 (14 Feb 2019)
 
 Usage: note [arguments]
 
