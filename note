@@ -13,7 +13,7 @@ create_note() {
     if [ ! -f "$NOTE_PATH" ]; then
         mkdir -p "$NOTE_DIR"
         touch "$NOTE_PATH"
-        printf "$day-$month-$year\n---\n\n" >"$NOTE_PATH"
+        printf "$DAY-$MONTH-$YEAR\n---\n\n" >"$NOTE_PATH"
         printf "Created new note: $NOTE_PATH\n"
     else
         printf "Note \"$NOTE_PATH\" already exists. Saving changes to existing file.\n"
