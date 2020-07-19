@@ -32,7 +32,7 @@ print_info() {
 }
 
 print_help() {
-    printf "note - Note Keeper 0.3.4 (14 Feb 2019)
+    printf "note - Note Keeper 0.4.0 (20 July 2020)
 
 Usage: note [arguments]
 
@@ -41,7 +41,16 @@ Arguments:
   -e | --edit <DATE: year-month-day>  Open a specific note for editing.
   -p | --print                        Print the contents of a note.
   -c | --create                       Create a note but don't open it for editing.
-  -i | --info                         Print information about a note.\n"
+  -i | --info                         Print information about a note.
+
+The script loads configuration variables from \$XDG_CONFIG_HOME/note/noterc.
+
+Example:
+# Directory where the current note should be stored
+NOTE_DIR=\"\$HOME/notes/\$YEAR/\$MONTH\"
+
+# Name of the Note
+NOTE_PATH=\"\$NOTE_DIR/\$DAY.md\"\n"
 }
 
 open_note() {
