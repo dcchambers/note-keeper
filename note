@@ -1,5 +1,10 @@
 #!/bin/bash
 
+year=$(date +'%Y')
+month=$(date +'%m')
+day=$(date +'%d')
+note_path=~/notes/$year/$month/$day.md
+
 NOTERC="$XDG_CONFIG_HOME/note/noterc"
 if [ -f "$NOTERC" ]; then source "$XDG_CONFIG_HOME/note/noterc"; fi
 
@@ -52,11 +57,6 @@ open_note() {
         $EDITOR "$note_path"
     fi
 }
-
-year=$(date +'%Y')
-month=$(date +'%m')
-day=$(date +'%d')
-note_path=~/notes/$year/$month/$day.md
 
 if (($# > 0)); then
     while [[ $# -gt 0 ]]; do
