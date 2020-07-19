@@ -1,28 +1,31 @@
 #!/bin/bash
 
-create_note () {
-    if [ ! -f $note_path ]; then
-        mkdir -p ~/notes/$year/$month/
-        touch $note_path
-        printf "$day-$month-$year\n---\n\n" > $note_path
+NOTERC="$XDG_CONFIG_HOME/note/noterc"
+if [ -f "$NOTERC" ]; then source "$XDG_CONFIG_HOME/note/noterc"; fi
+
+create_note() {
+    if [ ! -f "$note_path" ]; then
+        mkdir -p "$HOME/notes/$year/$month/"
+        touch "$note_path"
+        printf "$day-$month-$year\n---\n\n" >"$note_path"
         printf "Created new note: $note_path\n"
     else
         printf "Note \"$note_path\" already exists. Saving changes to existing file.\n"
     fi
 }
 
-print_info () {
+print_info() {
     printf "Note preview:\n====================\n\n"
-    head -n 8 $note_path
+    head -n 8 "$note_path"
     printf "\n====================\n"
     printf "Note Stats:\n"
-    stat $note_path
+    stat "$note_path"
     printf "\n====================\n"
     printf "File Information:\n"
-    ls -lah $note_path
+    ls -lah "$note_path"
 }
 
-print_help () {
+print_help() {
     printf "note - Note Keeper 0.3.4 (14 Feb 2019)
 
 Usage: note [arguments]
@@ -35,54 +38,53 @@ Arguments:
   -i | --info                         Print information about a note.\n"
 }
 
-open_note () {
+open_note() {
     if [[ $EDITOR = *"vim"* ]] || [[ $EDITOR = *"nvim"* ]]; then
         # Open Vim or Neovim in insert mode.
-        $EDITOR "+normal G$" +startinsert! $note_path
+        $EDITOR "+normal G$" +startinsert! "$note_path"
     elif [[ $EDITOR = *"emacs"* ]]; then
         # Open Emacs with cursor at EOF.
-        emacs -nw $note_path --eval "(goto-char (point-max))"
+        emacs -nw "$note_path" --eval "(goto-char (point-max))"
     elif [[ $EDITOR = "" ]]; then
         # If no default editor, use Vim and open in insert mode.
-        vim "+normal G$" +startinsert! $note_path
+        vim "+normal G$" +startinsert! "$note_path"
     else
-        $EDITOR $note_path
+        $EDITOR "$note_path"
     fi
 }
 
-year=`date +'%Y'`
-month=`date +'%m'`
-day=`date +'%d'`
+year=$(date +'%Y')
+month=$(date +'%m')
+day=$(date +'%d')
 note_path=~/notes/$year/$month/$day.md
 
-if (( $# > 0 )); then
-    while [[ $# -gt 0 ]]
-    do
+if (($# > 0)); then
+    while [[ $# -gt 0 ]]; do
         key="$1"
         case $key in
-            -e|--edit)
+        -e | --edit)
             printf "(e)dit is not yet implemented :(\n"
             #shift
             #shift
             exit 0
             ;;
-            -p|--print)
-            cat $note_path
+        -p | --print)
+            cat "$note_path"
             shift
             ;;
-            -c|--create)
+        -c | --create)
             create_note
             shift
             ;;
-            -i|--info)
+        -i | --info)
             print_info
             shift
             ;;
-            -h|--help)
+        -h | --help)
             print_help
             shift
             ;;
-            *)
+        *)
             printf "Unknown Argument \"$1\"\n"
             printf "Try \"note --help\" to see usage information.\n"
             shift
