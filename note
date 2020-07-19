@@ -4,31 +4,31 @@ YEAR=$(date +'%Y')
 MONTH=$(date +'%m')
 DAY=$(date +'%d')
 NOTE_DIR="$HOME/notes/$YEAR/$MONTH"
-NOTE_PATH="$NOTE_DIR/$DAY.md"
+NOTE_NAME="$DAY.md"
 
 NOTERC="$XDG_CONFIG_HOME/note/noterc"
 if [ -f "$NOTERC" ]; then source "$XDG_CONFIG_HOME/note/noterc"; fi
 
 create_note() {
-    if [ ! -f "$NOTE_PATH" ]; then
+    if [ ! -f "$NOTE_DIR/$NOTE_NAME" ]; then
         mkdir -p "$NOTE_DIR"
-        touch "$NOTE_PATH"
-        printf "$DAY-$MONTH-$YEAR\n---\n\n" >"$NOTE_PATH"
-        printf "Created new note: $NOTE_PATH\n"
+        touch "$NOTE_DIR/$NOTE_NAME"
+        printf "$DAY-$MONTH-$YEAR\n---\n\n" >"$NOTE_DIR/$NOTE_NAME"
+        printf "Created new note: $NOTE_DIR/$NOTE_NAME\n"
     else
-        printf "Note \"$NOTE_PATH\" already exists. Saving changes to existing file.\n"
+        printf "Note \"$NOTE_DIR/$NOTE_NAME\" already exists. Saving changes to existing file.\n"
     fi
 }
 
 print_info() {
     printf "Note preview:\n====================\n\n"
-    head -n 8 "$NOTE_PATH"
+    head -n 8 "$NOTE_DIR/$NOTE_NAME"
     printf "\n====================\n"
     printf "Note Stats:\n"
-    stat "$NOTE_PATH"
+    stat "$NOTE_DIR/$NOTE_NAME"
     printf "\n====================\n"
     printf "File Information:\n"
-    ls -lah "$NOTE_PATH"
+    ls -lah "$NOTE_DIR/$NOTE_NAME"
 }
 
 print_help() {
@@ -47,15 +47,15 @@ Arguments:
 open_note() {
     if [[ $EDITOR = *"vim"* ]] || [[ $EDITOR = *"nvim"* ]]; then
         # Open Vim or Neovim in insert mode.
-        $EDITOR "+normal G$" +startinsert! "$NOTE_PATH"
+        $EDITOR "+normal G$" +startinsert! "$NOTE_DIR/$NOTE_NAME"
     elif [[ $EDITOR = *"emacs"* ]]; then
         # Open Emacs with cursor at EOF.
-        emacs -nw "$NOTE_PATH" --eval "(goto-char (point-max))"
+        emacs -nw "$NOTE_DIR/$NOTE_NAME" --eval "(goto-char (point-max))"
     elif [[ $EDITOR = "" ]]; then
         # If no default editor, use Vim and open in insert mode.
-        vim "+normal G$" +startinsert! "$NOTE_PATH"
+        vim "+normal G$" +startinsert! "$NOTE_DIR/$NOTE_NAME"
     else
-        $EDITOR "$NOTE_PATH"
+        $EDITOR "$NOTE_DIR/$NOTE_NAME"
     fi
 }
 
@@ -70,7 +70,7 @@ if (($# > 0)); then
             exit 0
             ;;
         -p | --print)
-            cat "$NOTE_PATH"
+            cat "$NOTE_DIR/$NOTE_NAME"
             shift
             ;;
         -c | --create)
