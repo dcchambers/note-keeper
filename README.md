@@ -83,4 +83,14 @@ $ tree ~/notes
   * If no default editor is set, it will use *Vim*.
     * It opens *vim* in insert mode.
 * The default location to store notes is in the `~/notes/` directory.
-  * To change this, edit the variable `$note_path` on line 42, and edit the `mkdir` command in the `create_note` function, line 5.
+  * To change this, create the file `$XDG_CONFIG_HOME/note/noterc`
+
+### noterc Variables
+
+```shell
+# Directory where the current note should be stored
+NOTE_DIR="$HOME/notes/$YEAR/$MONTH"
+
+# Name of the Note
+NOTE_PATH="$NOTE_DIR/$DAY.md"
+```
