@@ -41,7 +41,7 @@ Arguments:
   -e | --edit <DATE: year-month-day>  Open a specific note for editing.
   -p | --print                        Print the contents of a note.
   -c | --create                       Create a note but don't open it for editing.
-  -t | --title                        Set filename for note. Will be created in \$NOTE_DIR
+  -n | --name                         Set filename for note. Will be created in \$NOTE_DIR
                                       Don't forget an extension like .md
   -i | --info                         Print information about a note.
 
@@ -87,7 +87,7 @@ if (($# > 0)); then
         -i | --info)
             print_info
             ;;
-        -t | --title)
+        -n | --name)
             NOTE_NAME="$2"
             create_note
             open_note

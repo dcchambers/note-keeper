@@ -2,7 +2,7 @@
 
 ## v0.4.1 - 20 July 2020
 
-* Added ability to add custom filename via -t | --title
+* Added ability to add custom filename via -n | --name
 
 ## v0.4.0 - 20 July 2020
 

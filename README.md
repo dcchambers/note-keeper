@@ -52,7 +52,7 @@ note file in Vim.
 * `-i | --info`
   * Use the `-i` flag to print information about a note.
 
-* `t | --title`
+* `-n | --name`
   * Set filename for note. Will be created in $NOTE_DIR. Don't forget an extension like .md.
 
 * `-e | --edit <Date>`
