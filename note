@@ -32,7 +32,7 @@ print_info() {
 }
 
 print_help() {
-    printf "note - Note Keeper 0.4.0 (20 July 2020)
+    printf "note - Note Keeper 0.4.1 (20 July 2020)
 
 Usage: note [arguments]
 
@@ -41,6 +41,8 @@ Arguments:
   -e | --edit <DATE: year-month-day>  Open a specific note for editing.
   -p | --print                        Print the contents of a note.
   -c | --create                       Create a note but don't open it for editing.
+  -t | --title                        Set filename for note. Will be created in \$NOTE_DIR
+                                      Don't forget an extension like .md
   -i | --info                         Print information about a note.
 
 The script loads configuration variables from \$XDG_CONFIG_HOME/note/noterc.
@@ -74,32 +76,32 @@ if (($# > 0)); then
         case $key in
         -e | --edit)
             printf "(e)dit is not yet implemented :(\n"
-            #shift
-            #shift
             exit 0
             ;;
         -p | --print)
             cat "$NOTE_DIR/$NOTE_NAME"
-            shift
             ;;
         -c | --create)
             create_note
-            shift
             ;;
         -i | --info)
             print_info
+            ;;
+        -t | --title)
+            NOTE_NAME="$2"
+            create_note
+            open_note
             shift
             ;;
         -h | --help)
             print_help
-            shift
             ;;
         *)
             printf "Unknown Argument \"$1\"\n"
             printf "Try \"note --help\" to see usage information.\n"
-            shift
             ;;
         esac
+        shift
     done
 else
     create_note

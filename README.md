@@ -52,6 +52,9 @@ note file in Vim.
 * `-i | --info`
   * Use the `-i` flag to print information about a note.
 
+* `t | --title`
+  * Set filename for note. Will be created in $NOTE_DIR. Don't forget an extension like .md.
+
 * `-e | --edit <Date>`
   * :warning: Not yet implemented!
   * Use the `-e` flag with a DATE argument to edit a note from a specific date.
