@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## v0.4.0 - 20 July 2020
+
+* Added config file
+* Bash code is now less error-prone
+* Fixed markdown syntax in CHANGELOG.md and README.md
+
 ## v0.3.4 - 14 Feb 2019
 
 * Alter text printed to terminal when a user opens an existing note to be friendlier
