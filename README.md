@@ -95,5 +95,5 @@ $ tree ~/notes
 NOTE_DIR="$HOME/notes/$YEAR/$MONTH"
 
 # Name of the Note
-NOTE_PATH="$NOTE_DIR/$DAY.md"
+NOTE_NAME="$DAY.md"
 ```
