@@ -86,7 +86,7 @@ $ tree ~/notes
   * If no default editor is set, it will use *Vim*.
     * It opens *vim* in insert mode.
 * The default location to store notes is in the `~/notes/` directory.
-  * To change this, create the file `$XDG_CONFIG_HOME/note/noterc`
+  * To change this, create the file `${XDG_CONFIG_HOME:-$HOME}/notekeeper/noterc`
 
 ### noterc Variables
 

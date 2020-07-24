@@ -6,8 +6,8 @@ DAY=$(date +'%d')
 NOTE_DIR="$HOME/notes/$YEAR/$MONTH"
 NOTE_NAME="$DAY.md"
 
-NOTERC="$XDG_CONFIG_HOME/note/noterc"
-if [ -f "$NOTERC" ]; then source "$XDG_CONFIG_HOME/note/noterc"; fi
+NOTERC="${XDG_CONFIG_HOME:-$HOME}/notekeeper/noterc"
+if [ -f "$NOTERC" ]; then source "$NOTERC"; fi
 
 create_note() {
     if [ ! -f "$NOTE_DIR/$NOTE_NAME" ]; then
@@ -45,7 +45,7 @@ Arguments:
                                       Don't forget an extension like .md
   -i | --info                         Print information about a note.
 
-The script loads configuration variables from \$XDG_CONFIG_HOME/note/noterc.
+The script loads configuration variables from \${XDG_CONFIG_HOME:-\$HOME}/notekeeper/noterc.
 
 Example:
 # Directory where the current note should be stored
