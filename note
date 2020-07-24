@@ -80,29 +80,39 @@ if (($# > 0)); then
             ;;
         -p | --print)
             cat "$NOTE_DIR/$NOTE_NAME"
+            shift
             ;;
         -c | --create)
             create_note
+            shift
             ;;
         -i | --info)
             print_info
+            shift
             ;;
         -n | --name)
             NOTE_NAME="$2"
             if [ -z "$NOTE_NAME" ]; then printf "No name found. Please provide a name.\n" && exit 1; fi
-            create_note
-            open_note
+            # Hacky way of checking if -n is the only option
+            if [ "$#" -eq 2 ]; then
+                shift
+                shift
+                create_note
+                open_note
+            fi
+            shift
             shift
             ;;
         -h | --help)
             print_help
+            shift
             ;;
         *)
             printf "Unknown Argument \"$1\"\n"
             printf "Try \"note --help\" to see usage information.\n"
+            shift
             ;;
         esac
-        shift
     done
 else
     create_note
