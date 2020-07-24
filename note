@@ -89,7 +89,7 @@ if (($# > 0)); then
             ;;
         -n | --name)
             NOTE_NAME="$2"
-            if [ -z "$NOTE_NAME"]; then printf "No name found. Please provide a name.\n" && exit 1; fi
+            if [ -z "$NOTE_NAME" ]; then printf "No name found. Please provide a name.\n" && exit 1; fi
             create_note
             open_note
             shift
