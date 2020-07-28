@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## v0.4.1 - 28 July 2020
+
 ## v0.4.0 - 28 July 2020
 
 * Added config file (noterc)

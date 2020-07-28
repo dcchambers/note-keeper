@@ -6,7 +6,7 @@ DAY=$(date +'%d')
 NOTE_DIR="$HOME/notes/$YEAR/$MONTH"
 NOTE_NAME="$DAY.md"
 
-NOTERC="${XDG_CONFIG_HOME:-$HOME}/notekeeper/noterc"
+NOTERC="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
 if [ -f "$NOTERC" ]; then source "$NOTERC"; fi
 
 create_note() {
@@ -32,7 +32,7 @@ print_info() {
 }
 
 print_help() {
-    printf "note - Note Keeper 0.4.0 (28 July 2020)
+    printf "note - Note Keeper 0.4.1 (28 July 2020)
 
 Usage: note [arguments]
 
@@ -45,7 +45,7 @@ Arguments:
                                       Don't forget an extension like .md
   -i | --info                         Print information about a note.
 
-The script loads configuration variables from \${XDG_CONFIG_HOME:-\$HOME}/notekeeper/noterc.
+The script loads configuration variables from \${XDG_CONFIG_HOME:-\$HOME/.config}/notekeeper/noterc.
 
 Example:
 # Directory where the current note should be stored
