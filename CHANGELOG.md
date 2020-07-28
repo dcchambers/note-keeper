@@ -1,14 +1,12 @@
 # CHANGELOG
 
-## v0.4.1 - 20 July 2020
+## v0.4.0 - 28 July 2020
 
+* Added config file (noterc)
 * Added ability to add custom filename via -n | --name
-
-## v0.4.0 - 20 July 2020
-
-* Added config file
 * Bash code is now less error-prone
 * Fixed markdown syntax in CHANGELOG.md and README.md
+* Thanks for the PR [@Madic-](https://github.com/Madic-)!
 
 ## v0.3.4 - 14 Feb 2019
 
