@@ -1,6 +1,7 @@
 # CHANGELOG
 
 ## v0.4.1 - 28 July 2020
+* Fix noterc file path when XDG_CONFIG_HOME is not set
 
 ## v0.4.0 - 28 July 2020
 
