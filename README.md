@@ -95,7 +95,6 @@ note file in Vim.
 * The default location to store notes is in the `~/notes/` directory.
   * To change this, set a `NOTE_DIR` value in your `noterc` file.
 
-  create the file `${XDG_CONFIG_HOME}/notekeeper/noterc`
 
 ### noterc
 
@@ -107,7 +106,7 @@ You can use a `noterc` file to customize Notekeeper!
 The following variables can be set to overwrite Notekeeper defaults:
 
 * `NOTE_DIR` - The base directory for storing notes.
-  * Default is `$HOME/notes`
+  * Default is `~/notes`
 
 * `EDITOR`
   * By default Notekeeper uses whatever is in your `$EDITOR` variable, and falls back to vim if none is set.
