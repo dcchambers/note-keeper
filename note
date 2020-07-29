@@ -32,7 +32,7 @@ print_info() {
 }
 
 print_help() {
-    printf "note - Note Keeper 0.4.1 (28 July 2020)
+    printf "note - Note Keeper 0.5.0 (28 July 2020)
 
 Usage: note [arguments]
 
@@ -44,6 +44,7 @@ Arguments:
   -n | --name                         Set filename for note. Will be created in \$NOTE_DIR
                                       Don't forget an extension like .md
   -i | --info                         Print information about a note.
+  -t | --time                         Add a timestamp when opening a note.
 
 The script loads configuration variables from \${XDG_CONFIG_HOME:-\$HOME/.config}/notekeeper/noterc.
 
@@ -106,6 +107,11 @@ if (($# > 0)); then
         -h | --help)
             print_help
             shift
+            ;;
+        -t | --time)
+            printf "[$(date +%T)]\n" >> "$NOTE_DIR/$NOTE_NAME"
+            shift
+            open_note
             ;;
         *)
             printf "Unknown Argument \"$1\"\n"
