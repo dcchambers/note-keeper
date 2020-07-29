@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## v0.5.0 - 28 July 2020
+* Implement -t | --time flag to add a timestamp when opening notes.
+
 ## v0.4.1 - 28 July 2020
 * Fix noterc file path when XDG_CONFIG_HOME is not set
 

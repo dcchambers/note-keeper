@@ -62,6 +62,10 @@ note file in Vim.
 * `-h | --help`
   * Use the `-h` flag to print usage information.
 
+* `-t | --time`
+  * Use the `-t` flag to add a timestamp when opening a note.
+
+
 ## Demo
 
 [![asciicast](https://asciinema.org/a/194428.png)](https://asciinema.org/a/194428)
