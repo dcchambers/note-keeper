@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# shellcheck source="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
+# shellcheck disable=SC1091
+
 YEAR=$(date +'%Y')
 MONTH=$(date +'%m')
 DAY=$(date +'%d')
@@ -13,10 +16,10 @@ create_note() {
     if [ ! -f "$NOTE_DIR/$NOTE_NAME" ]; then
         mkdir -p "$NOTE_DIR"
         touch "$NOTE_DIR/$NOTE_NAME"
-        printf "$DAY-$MONTH-$YEAR\n---\n\n" >"$NOTE_DIR/$NOTE_NAME"
-        printf "Created new note: $NOTE_DIR/$NOTE_NAME\n"
+        printf "%s-%s-%s\n---\n\n" "$DAY" "$MONTH" "$YEAR" > "$NOTE_DIR/$NOTE_NAME"
+        printf "Created new note: %s/%s\n" "$NOTE_DIR" "$NOTE_NAME"
     else
-        printf "Note \"$NOTE_DIR/$NOTE_NAME\" already exists. Saving changes to existing file.\n"
+        printf "Note \"%s/%s\" already exists. Saving changes to existing file.\n" "$NOTE_DIR" "$NOTE_NAME"
     fi
 }
 
@@ -109,12 +112,12 @@ if (($# > 0)); then
             shift
             ;;
         -t | --time)
-            printf "[$(date +%T)]\n" >> "$NOTE_DIR/$NOTE_NAME"
+            printf "[%s]\n" "$(date +%T)" >> "$NOTE_DIR/$NOTE_NAME"
             shift
             open_note
             ;;
         *)
-            printf "Unknown Argument \"$1\"\n"
+            printf "Unknown Argument \"%s\"\n" "$1"
             printf "Try \"note --help\" to see usage information.\n"
             shift
             ;;

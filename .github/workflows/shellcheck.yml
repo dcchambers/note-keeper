@@ -1,6 +1,6 @@
 on: [push, pull_request]
 
-name: 'Trigger: Push action'
+name: 'shellcheck'
 
 jobs:
   shellcheck:
