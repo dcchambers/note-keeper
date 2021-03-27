@@ -1,5 +1,7 @@
 # note-keeper
 
+![Shellcheck](https://github.com/dcchambers/note-keeper/actions/workflows/shellcheck.yml/badge.svg)
+
 A tiny script for taking and organizing simple text notes.
 
 ![gif](https://i.imgur.com/z70PRhk.gif)
