@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# shellcheck source="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
+# shellcheck disable=SC1091
+
 YEAR=$(date +'%Y')
 MONTH=$(date +'%m')
 DAY=$(date +'%d')
