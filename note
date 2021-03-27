@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # shellcheck source="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
 # shellcheck disable=SC1091
