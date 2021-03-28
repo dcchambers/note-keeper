@@ -6,11 +6,13 @@
 YEAR=$(date +'%Y')
 MONTH=$(date +'%m')
 DAY=$(date +'%d')
-NOTE_DIR="$HOME/notes/$YEAR/$MONTH"
-NOTE_NAME="$DAY.md"
+NOTE_DIR="$HOME/notes"
+NOTE_NAME="$YEAR-$MONTH-$DAY.md"
 
 NOTERC="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
 if [ -f "$NOTERC" ]; then source "$NOTERC"; fi
+
+NOTE_DIR="$NOTE_DIR/$YEAR/$MONTH/$DAY"
 
 create_note() {
     if [ ! -f "$NOTE_DIR/$NOTE_NAME" ]; then

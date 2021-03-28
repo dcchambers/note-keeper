@@ -75,15 +75,18 @@ note file in Vim.
 ## File Organization
 
 ```shell
-$ tree ~/notes
+❱❱ tree ~/notes
 /home/username/notes
-└── 2018
-    ├── 07
-    │   └── 31.md
-    └── 08
-        ├── 01.md
-        └── 02.md
-
+└── 2020
+    ├── 06
+    │   ├── 21
+    │   │   └── 2020-06-21.md
+    │   └── 22
+    │       └── 2020-06-22.md
+    └── 07
+        └── 28
+            ├── 2020-07-28.md
+            └── another-note.md
 ```
 
 ## Configuration
@@ -92,14 +95,23 @@ $ tree ~/notes
   * If no default editor is set, it will use *Vim*.
     * It opens *vim* in insert mode.
 * The default location to store notes is in the `~/notes/` directory.
-  * To change this, create the file `${XDG_CONFIG_HOME:-$HOME}/notekeeper/noterc`
+  * To change this, set a `NOTE_DIR` value in your `noterc` file.
 
-### noterc Variables
 
-```shell
-# Directory where the current note should be stored
-NOTE_DIR="$HOME/notes/$YEAR/$MONTH"
+### noterc
 
-# Name of the Note
-NOTE_NAME="$DAY.md"
-```
+You can use a `noterc` file to customize Notekeeper!
+
+* Create this file at `${XDG_CONFIG_HOME}/notekeeper/noterc`
+  * On MacOS, this will be `~/.config/notekeeper/noterc`
+
+The following variables can be set to overwrite Notekeeper defaults:
+
+* `NOTE_DIR` - The base directory for storing notes.
+  * Default is `~/notes`
+
+* `EDITOR`
+  * By default Notekeeper uses whatever is in your `$EDITOR` variable, and falls back to vim if none is set.
+
+* `NOTE_NAME`
+  * Default is `$YEAR-$MONTH-$DAY.md`
