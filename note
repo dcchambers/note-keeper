@@ -20,8 +20,6 @@ create_note() {
         touch "$NOTE_DIR/$NOTE_NAME"
         printf "%s-%s-%s\n---\n\n" "$DAY" "$MONTH" "$YEAR" > "$NOTE_DIR/$NOTE_NAME"
         printf "Created new note: %s/%s\n" "$NOTE_DIR" "$NOTE_NAME"
-    else
-        printf "Note \"%s/%s\" already exists. Saving changes to existing file.\n" "$NOTE_DIR" "$NOTE_NAME"
     fi
 }
 
@@ -62,6 +60,7 @@ NOTE_NAME=\"\$DAY.md\"\n"
 }
 
 open_note() {
+    printf "Opening note: %s/%s.\n" "$NOTE_DIR" "$NOTE_NAME"
     if [[ $EDITOR = *"vim"* ]] || [[ $EDITOR = *"nvim"* ]]; then
         # Open Vim or Neovim in insert mode.
         $EDITOR "+normal G$" +startinsert! "$NOTE_DIR/$NOTE_NAME"
@@ -76,12 +75,14 @@ open_note() {
     fi
 }
 
+openNote=false
+
 if (($# > 0)); then
     while [[ $# -gt 0 ]]; do
         key="$1"
         case $key in
         -e | --edit)
-            printf "(e)dit is not yet implemented :(\n"
+            printf "(e)dit is not yet implemented. Use (n)ame instead.\n"
             exit 0
             ;;
         -p | --print)
@@ -89,7 +90,7 @@ if (($# > 0)); then
             shift
             ;;
         -c | --create)
-            create_note
+            createNoteOnly=true
             shift
             ;;
         -i | --info)
@@ -98,14 +99,8 @@ if (($# > 0)); then
             ;;
         -n | --name)
             NOTE_NAME="$2"
-            if [ -z "$NOTE_NAME" ]; then printf "No name found. Please provide a name.\n" && exit 1; fi
-            # Hacky way of checking if -n is the only option
-            if [ "$#" -eq 2 ]; then
-                shift
-                shift
-                create_note
-                open_note
-            fi
+            openNote=true
+            if [ -z "$NOTE_NAME" ]; then printf "Expected additional argument <Note Filename>.\n" && exit 1; fi
             shift
             shift
             ;;
@@ -114,18 +109,32 @@ if (($# > 0)); then
             shift
             ;;
         -t | --time)
-            printf "[%s]\n" "$(date +%T)" >> "$NOTE_DIR/$NOTE_NAME"
+            addTimeStamp=true
+            openNote=true
             shift
-            open_note
             ;;
         *)
             printf "Unknown Argument \"%s\"\n" "$1"
-            printf "Try \"note --help\" to see usage information.\n"
+            printf "Use \"note --help\" to see usage information.\n"
             shift
             ;;
         esac
     done
 else
+    openNote=true
+fi
+  #statements
+
+if [ "$createNoteOnly" = true ]; then
+    create_note
+    exit 0
+fi
+
+if [ "$addTimeStamp" = true ]; then
+    printf "[%s]\n" "$(date +%T)" >> "$NOTE_DIR/$NOTE_NAME"
+fi
+
+if [ "$openNote" = true ]; then
     create_note
     open_note
 fi
