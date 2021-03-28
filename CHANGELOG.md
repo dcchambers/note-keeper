@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v0.6.0 - 27 March 2021
+* Update the directory structure where notes are stored. (9dd754f)
+* General improvements to the bash code (1b6d0a0, 1b6d0a0)
+
 ## v0.5.0 - 28 July 2020
 * Implement -t | --time flag to add a timestamp when opening notes.
 
