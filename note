@@ -6,9 +6,12 @@
 YEAR=$(date +'%Y')
 MONTH=$(date +'%m')
 DAY=$(date +'%d')
+
+# Set default configuration
 NOTE_DIR="$HOME/notes"
 NOTE_NAME="$YEAR-$MONTH-$DAY.md"
 
+# Overwrite configs from noterc configuration file
 NOTERC="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
 if [ -f "$NOTERC" ]; then source "$NOTERC"; fi
 
@@ -76,6 +79,8 @@ open_note() {
 }
 
 openNote=false
+printNoteOnly=false
+createNoteOnly=false
 
 if (($# > 0)); then
     while [[ $# -gt 0 ]]; do
@@ -86,7 +91,7 @@ if (($# > 0)); then
             exit 0
             ;;
         -p | --print)
-            cat "$NOTE_DIR/$NOTE_NAME"
+            printNoteOnly=true
             shift
             ;;
         -c | --create)
@@ -106,7 +111,7 @@ if (($# > 0)); then
             ;;
         -h | --help)
             print_help
-            shift
+            exit 0
             ;;
         -t | --time)
             addTimeStamp=true
@@ -116,14 +121,18 @@ if (($# > 0)); then
         *)
             printf "Unknown Argument \"%s\"\n" "$1"
             printf "Use \"note --help\" to see usage information.\n"
-            shift
+            exit 1
             ;;
         esac
     done
 else
     openNote=true
 fi
-  #statements
+
+if [ "$printNoteOnly" = true ]; then
+    cat "$NOTE_DIR/$NOTE_NAME"
+    exit 0
+fi
 
 if [ "$createNoteOnly" = true ]; then
     create_note
