@@ -79,6 +79,8 @@ open_note() {
 }
 
 openNote=false
+printNoteOnly=false
+createNoteOnly=false
 
 if (($# > 0)); then
     while [[ $# -gt 0 ]]; do
@@ -89,8 +91,8 @@ if (($# > 0)); then
             exit 0
             ;;
         -p | --print)
-            cat "$NOTE_DIR/$NOTE_NAME"
-            exit 0
+            printNoteOnly=true
+            shift
             ;;
         -c | --create)
             createNoteOnly=true
@@ -119,14 +121,18 @@ if (($# > 0)); then
         *)
             printf "Unknown Argument \"%s\"\n" "$1"
             printf "Use \"note --help\" to see usage information.\n"
-            shift
+            exit 1
             ;;
         esac
     done
 else
     openNote=true
 fi
-  #statements
+
+if [ "$printNoteOnly" = true ]; then
+    cat "$NOTE_DIR/$NOTE_NAME"
+    exit 0
+fi
 
 if [ "$createNoteOnly" = true ]; then
     create_note
