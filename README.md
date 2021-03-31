@@ -4,7 +4,7 @@
 
 A tiny bash script for taking and organizing simple text notes.
 
-![](notekeeper-demo.gif)
+![](assets/notekeeper-demo.gif)
 
 - Write a TODO list.
 - Use as a copy/paste clipboard.
