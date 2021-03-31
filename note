@@ -9,10 +9,11 @@ DAY=$(date +'%d')
 
 # Set default configuration
 NOTE_DIR="$HOME/notes"
+BASE_NOTE_DIR=$NOTE_DIR
 NOTE_NAME="$YEAR-$MONTH-$DAY.md"
 PRINT_TOOL="cat"
 
-# Overwrite configs from noterc configuration file
+# Overwrite default configs from noterc configuration file
 NOTERC="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
 if [ -f "$NOTERC" ]; then source "$NOTERC"; fi
 
@@ -34,10 +35,10 @@ Usage: note [arguments]
 
 Arguments:
   -h | --help                         Display usage guide.
-  -e | --edit <DATE: year-month-day>  Open a specific note for editing.
+  -e | --edit <FILENAME>              Open a specific note for editing.
   -p | --print                        Print the contents of a note.
   -c | --create                       Create a note but don't open it for editing.
-  -n | --name                         Set filename for note. Will be created in \$NOTE_DIR
+  -n | --name <FILENAME>              Set filename for note. Will be created in \$NOTE_DIR
                                       Don't forget an extension like .md
   -t | --time                         Add a timestamp when opening a note.
 
@@ -52,19 +53,32 @@ NOTE_NAME=\"\$DAY.md\"\n"
 }
 
 open_note() {
-    printf "Opening note: %s/%s.\n" "$NOTE_DIR" "$NOTE_NAME"
+    printf "Opening note: %s\n" "$1"
     if [[ $EDITOR = *"vim"* ]] || [[ $EDITOR = *"nvim"* ]]; then
         # Open Vim or Neovim in insert mode.
-        $EDITOR "+normal G$" +startinsert! "$NOTE_DIR/$NOTE_NAME"
+        $EDITOR "+normal G$" +startinsert! "$1"
     elif [[ $EDITOR = *"emacs"* ]]; then
         # Open Emacs with cursor at EOF.
-        emacs -nw "$NOTE_DIR/$NOTE_NAME" --eval "(goto-char (point-max))"
+        emacs -nw "$1" --eval "(goto-char (point-max))"
     elif [[ $EDITOR = "" ]]; then
         # If no default editor, use Vim and open in insert mode.
-        vim "+normal G$" +startinsert! "$NOTE_DIR/$NOTE_NAME"
+        vim "+normal G$" +startinsert! "$1"
     else
-        $EDITOR "$NOTE_DIR/$NOTE_NAME"
+        $EDITOR "$1"
     fi
+}
+
+edit_note() {
+  if [ "$(find "$BASE_NOTE_DIR" -name "$1" | wc -l)" -gt 1 ]; then
+      printf "Error: More than one note with that name was found.\n"
+      printf "Please edit note(s) manually with your editor of choice.\n"
+      exit 1
+  elif [ "$(find "$BASE_NOTE_DIR" -name "$1" | wc -l)" -eq 0 ]; then
+      printf "Unable to find a note with that name.\n"
+      exit 1
+  else
+      open_note "$(find "$BASE_NOTE_DIR" -name "$1")"
+  fi
 }
 
 openNote=false
@@ -76,7 +90,18 @@ if (($# > 0)); then
         key="$1"
         case $key in
         -e | --edit)
-            printf "(e)dit is not yet implemented. Use (n)ame instead.\n"
+            if [ "$#" -ne 2 ]; then
+                printf "Incorrect number of arguments.\n"
+                printf "Use \"note --help\" to see usage information.\n"
+                exit 1
+            fi
+            NOTE_NAME="$2"
+            if [ -z "$NOTE_NAME" ]; then
+                printf "Expected additional argument <Note Filename>.\n"
+                exit 1
+            else
+                edit_note "$NOTE_NAME"
+            fi
             exit 0
             ;;
         -p | --print)
@@ -90,7 +115,10 @@ if (($# > 0)); then
         -n | --name)
             NOTE_NAME="$2"
             openNote=true
-            if [ -z "$NOTE_NAME" ]; then printf "Expected additional argument <Note Filename>.\n" && exit 1; fi
+            if [ -z "$NOTE_NAME" ]; then
+                printf "Expected additional argument <Note Filename>.\n"
+                exit 1
+            fi
             shift
             shift
             ;;
@@ -111,6 +139,7 @@ if (($# > 0)); then
         esac
     done
 else
+    #no arguments/options, just open the default note.
     openNote=true
 fi
 
@@ -130,5 +159,5 @@ fi
 
 if [ "$openNote" = true ]; then
     create_note
-    open_note
+    open_note "$NOTE_DIR/$NOTE_NAME"
 fi
