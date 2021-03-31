@@ -42,7 +42,7 @@ and will open that note file in Vim.
 - `-c | --create`
   - Use the `-c` flag to create a note without opening it.
 - `-p | --print`
-  - Use the `-v` flag to print the contents of the note.
+  - Use the `-p` flag to print the contents of the note.
 - `-n | --name <FILENAME>`
   - Set filename for note. Will be created in $NOTE_DIR.
     Can be combined with other options (-c, -p, -t)
