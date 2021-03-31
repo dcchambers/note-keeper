@@ -26,17 +26,6 @@ create_note() {
     fi
 }
 
-print_info() {
-    printf "Note preview:\n====================\n\n"
-    head -n 8 "$NOTE_DIR/$NOTE_NAME"
-    printf "\n====================\n"
-    printf "Note Stats:\n"
-    stat "$NOTE_DIR/$NOTE_NAME"
-    printf "\n====================\n"
-    printf "File Information:\n"
-    ls -lah "$NOTE_DIR/$NOTE_NAME"
-}
-
 print_help() {
     printf "note - Note Keeper 0.6.0 (27 March 2021)
 
@@ -49,7 +38,6 @@ Arguments:
   -c | --create                       Create a note but don't open it for editing.
   -n | --name                         Set filename for note. Will be created in \$NOTE_DIR
                                       Don't forget an extension like .md
-  -i | --info                         Print information about a note.
   -t | --time                         Add a timestamp when opening a note.
 
 The script loads configuration variables from \${XDG_CONFIG_HOME:-\$HOME/.config}/notekeeper/noterc.
@@ -96,10 +84,6 @@ if (($# > 0)); then
             ;;
         -c | --create)
             createNoteOnly=true
-            shift
-            ;;
-        -i | --info)
-            print_info
             shift
             ;;
         -n | --name)
