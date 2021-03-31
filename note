@@ -106,7 +106,7 @@ if (($# > 0)); then
             ;;
         -h | --help)
             print_help
-            shift
+            exit 0
             ;;
         -t | --time)
             addTimeStamp=true
