@@ -57,9 +57,9 @@ and will open that note file in Vim.
 - `--destroy <FILENAME>`
   - Use the `--destroy` flag to permanently delete a note.
 
-## Demo
+## Demo (Asciinema)
 
-[![asciicast](https://asciinema.org/a/404264.png)](https://asciinema.org/a/404264)
+[![asciicast](assets/notekeeper-asciinema.png)](https://asciinema.org/a/404264)
 
 ## File Organization
 
