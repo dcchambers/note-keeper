@@ -6,9 +6,12 @@
 YEAR=$(date +'%Y')
 MONTH=$(date +'%m')
 DAY=$(date +'%d')
+
+# Set default configuration
 NOTE_DIR="$HOME/notes"
 NOTE_NAME="$YEAR-$MONTH-$DAY.md"
 
+# Overwrite configs from noterc configuration file
 NOTERC="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
 if [ -f "$NOTERC" ]; then source "$NOTERC"; fi
 
@@ -87,7 +90,7 @@ if (($# > 0)); then
             ;;
         -p | --print)
             cat "$NOTE_DIR/$NOTE_NAME"
-            shift
+            exit 0
             ;;
         -c | --create)
             createNoteOnly=true
