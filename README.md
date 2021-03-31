@@ -115,3 +115,6 @@ The following variables can be set to overwrite Notekeeper defaults:
 
 * `NOTE_NAME`
   * Default is `$YEAR-$MONTH-$DAY.md`
+
+# `PRINT_TOOL`
+  * Default is `cat`
