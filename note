@@ -31,18 +31,22 @@ create_note() {
 print_help() {
     printf "note - Note Keeper 0.6.0 (27 March 2021)
 
-Usage: note [arguments]
+Usage: note [<args>]
 
 Arguments:
   -h | --help                         Display usage guide.
   -e | --edit <FILENAME>              Open a specific note for editing.
   -p | --print                        Print the contents of a note.
-  -c | --create                       Create a note but don't open it for editing.
-  -n | --name <FILENAME>              Set filename for note. Will be created in \$NOTE_DIR
-                                      Don't forget an extension like .md
+  -c | --create                       Create a note but don't open it.
+  -n | --name <FILENAME>              Use a specific filename rather than the
+                                      default name (\$YEAR-\$MONTH-\$DAY.md).
+                                      Can be combined with args (-c, -p, -t).
   -t | --time                         Add a timestamp when opening a note.
+  -d | --delete <FILENAME>            Move a note to the trash directory.
+       --destroy <FILENAME>           Permanently delete (rm) a note.
 
-The script loads configuration variables from \${XDG_CONFIG_HOME:-\$HOME/.config}/notekeeper/noterc.
+The script loads configuration variables from:
+\${XDG_CONFIG_HOME:-\$HOME/.config}/notekeeper/noterc.
 
 Example:
 # Directory where the current note should be stored
@@ -69,16 +73,63 @@ open_note() {
 }
 
 edit_note() {
-  if [ "$(find "$BASE_NOTE_DIR" -name "$1" | wc -l)" -gt 1 ]; then
-      printf "Error: More than one note with that name was found.\n"
-      printf "Please edit note(s) manually with your editor of choice.\n"
-      exit 1
-  elif [ "$(find "$BASE_NOTE_DIR" -name "$1" | wc -l)" -eq 0 ]; then
-      printf "Unable to find a note with that name.\n"
-      exit 1
-  else
-      open_note "$(find "$BASE_NOTE_DIR" -name "$1")"
-  fi
+    # If find returns more than 1 result or no results (1 blank char) then
+    # we return an error.
+    path_to_note=$(find "$BASE_NOTE_DIR" -name "$1")
+    if [ "$(echo "$path_to_note" | wc -l)" -gt 1 ]; then
+        printf "Error: More than one note with that name was found.\n"
+        printf "Please edit note(s) manually with your editor of choice.\n\n"
+        printf "Files found:\n\n%s\n" "$path_to_note"
+        exit 1
+    elif [ "$path_to_note" = "" ]; then
+        printf "Unable to find a note with that name in %s.\n" "$BASE_NOTE_DIR"
+        exit 1
+    else
+        open_note "$path_to_note"
+    fi
+}
+
+soft_delete_note() {
+    if [ ! -d "$BASE_NOTE_DIR/trash" ]; then
+        mkdir -p "$BASE_NOTE_DIR/trash"
+    fi
+
+    # If find returns more than 1 result or no results (1 blank char) then
+    # we return an error and exit.
+    path_to_note=$(find "$BASE_NOTE_DIR" -name "$1")
+    if [ "$(echo "$path_to_note" | wc -l)" -gt 1 ]; then
+        printf "Error: More than one note with that name was found.\n"
+        printf "Please edit note(s) manually with your editor of choice.\n\n"
+        printf "Files found:\n\n%s\n" "$path_to_note"
+        exit 1
+    elif [ "$path_to_note" = "" ]; then
+        printf "Unable to find a note with that name in %s.\n" "$BASE_NOTE_DIR"
+        exit 1
+    else
+        printf "Moving %s to trash.\n" "$path_to_note"
+        mv -n "$path_to_note" "$BASE_NOTE_DIR/trash"
+        exit 0
+    fi
+
+}
+
+destroy_note() {
+    # If find returns more than 1 result or no results (1 blank char) then
+    # we return an error and exit.
+    path_to_note=$(find "$BASE_NOTE_DIR" -name "$1")
+    if [ "$(echo "$path_to_note" | wc -l)" -gt 1 ]; then
+        printf "Error: More than one note with that name was found.\n"
+        printf "Please edit note(s) manually with your editor of choice.\n\n"
+        printf "Files found:\n\n%s\n" "$path_to_note"
+        exit 1
+    elif [ "$path_to_note" = "" ]; then
+        printf "Unable to find a note with that name in %s.\n" "$BASE_NOTE_DIR"
+        exit 1
+    else
+        printf "Permanently deleting %s.\n" "$path_to_note"
+        rm -i "$path_to_note"
+        exit 0
+    fi
 }
 
 openNote=false
@@ -92,7 +143,7 @@ if (($# > 0)); then
         -e | --edit)
             if [ "$#" -ne 2 ]; then
                 printf "Incorrect number of arguments.\n"
-                printf "Use \"note --help\" to see usage information.\n"
+                printf "Usage: note --edit <FILENAME>\n"
                 exit 1
             fi
             NOTE_NAME="$2"
@@ -131,6 +182,24 @@ if (($# > 0)); then
             openNote=true
             shift
             ;;
+        -d | --delete)
+            if [ "$#" -ne 2 ]; then
+                printf "Incorrect number of arguments.\n"
+                printf "Usage: note --delete <FILENAME>\n"
+                exit 1
+            fi
+            soft_delete_note "$2"
+            exit 0
+            ;;
+        --destroy)
+            if [ "$#" -ne 2 ]; then
+                printf "Incorrect number of arguments.\n"
+                printf "Usage: note --destroy <FILENAME>\n"
+                exit 1
+            fi
+            destroy_note "$2"
+            exit 0
+            ;;
         *)
             printf "Unknown Argument \"%s\"\n" "$1"
             printf "Use \"note --help\" to see usage information.\n"
@@ -144,6 +213,10 @@ else
 fi
 
 if [ "$printNoteOnly" = true ]; then
+    if [ ! -f "$NOTE_DIR/$NOTE_NAME" ]; then
+      printf "Unable to find a note to print in directory: %s\n" "$NOTE_DIR"
+      exit 1
+    fi
     $PRINT_TOOL "$NOTE_DIR/$NOTE_NAME"
     exit 0
 fi
