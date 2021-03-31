@@ -10,6 +10,7 @@ DAY=$(date +'%d')
 # Set default configuration
 NOTE_DIR="$HOME/notes"
 NOTE_NAME="$YEAR-$MONTH-$DAY.md"
+PRINT_TOOL="cat"
 
 # Overwrite configs from noterc configuration file
 NOTERC="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
@@ -114,7 +115,7 @@ else
 fi
 
 if [ "$printNoteOnly" = true ]; then
-    cat "$NOTE_DIR/$NOTE_NAME"
+    $PRINT_TOOL "$NOTE_DIR/$NOTE_NAME"
     exit 0
 fi
 
