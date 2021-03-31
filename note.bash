@@ -29,31 +29,26 @@ create_note() {
 }
 
 print_help() {
-    printf "note - Note Keeper 0.6.0 (27 March 2021)
+    printf "Notekeeper 1.0 (31 March 2021)
 
 Usage: note [<args>]
 
 Arguments:
   -h | --help                         Display usage guide.
-  -e | --edit <FILENAME>              Open a specific note for editing.
+  -e | --edit    <FILENAME>           Open a specific note for editing.
   -p | --print                        Print the contents of a note.
   -c | --create                       Create a note but don't open it.
-  -n | --name <FILENAME>              Use a specific filename rather than the
+  -n | --name    <FILENAME>           Use a specific filename rather than the
                                       default name (\$YEAR-\$MONTH-\$DAY.md).
                                       Can be combined with args (-c, -p, -t).
   -t | --time                         Add a timestamp when opening a note.
-  -d | --delete <FILENAME>            Move a note to the trash directory.
+  -d | --delete  <FILENAME>           Move a note to the trash directory.
        --destroy <FILENAME>           Permanently delete (rm) a note.
 
-The script loads configuration variables from:
-\${XDG_CONFIG_HOME:-\$HOME/.config}/notekeeper/noterc.
+Notekeeper loads configuration variables from:
+\$HOME/.config}/notekeeper/noterc.
 
-Example:
-# Directory where the current note should be stored
-NOTE_DIR=\"\$HOME/notes/\$YEAR/\$MONTH\"
-
-# Name of the Note
-NOTE_NAME=\"\$DAY.md\"\n"
+For more help, see: https://github.com/dcchambers/note-keeper\n"
 }
 
 open_note() {
