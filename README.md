@@ -25,6 +25,11 @@ A tiny bash script for taking and organizing simple text notes.
 brew tap dcchambers/tap
 brew update && brew install notekeeper
 ```
+### Arch Linux
+
+```
+paru -S notekeeper
+```
 ### Manual Install
 
 - Simply download the `note.bash` script file.
