@@ -35,7 +35,7 @@ create_note() {
 }
 
 print_help() {
-    printf "Notekeeper 1.0 (31 March 2021)
+    printf "Notekeeper 1.1 (11 May 2021)
 
 Usage: note [<args>]
 
