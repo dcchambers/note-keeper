@@ -9,7 +9,6 @@ DAY=$(date +'%d')
 
 # Set default configuration
 NOTE_DIR="$HOME/notes"
-BASE_NOTE_DIR=$NOTE_DIR
 NOTE_NAME="$YEAR-$MONTH-$DAY.md"
 PRINT_TOOL="cat"
 
@@ -17,6 +16,7 @@ PRINT_TOOL="cat"
 NOTERC="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
 if [ -f "$NOTERC" ]; then source "$NOTERC"; fi
 
+BASE_NOTE_DIR=$NOTE_DIR
 NOTE_DIR="$NOTE_DIR/$YEAR/$MONTH/$DAY"
 
 create_note() {
