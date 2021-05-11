@@ -1,5 +1,12 @@
 # CHANGELOG
 
+## v1.1.0 - 11 May 2021
+- feat: Implement the ability to opt-out of using date-based directory
+  organization (5b8b2a5)
+- fix: Fixed a bug when using a custom note directory set in noterc file 
+  (eb0da17)
+- fix: Fixed a typo in usage/help printout (1b67567)
+
 ## v1.0.0 - 31 March 2021
 - General code cleanup and enhancements for 1.0 release (9e06464)
 - Implement destroy and delete functionality (27cdeb2)
