@@ -9,27 +9,33 @@ DAY=$(date +'%d')
 
 # Set default configuration
 NOTE_DIR="$HOME/notes"
-BASE_NOTE_DIR=$NOTE_DIR
 NOTE_NAME="$YEAR-$MONTH-$DAY.md"
 PRINT_TOOL="cat"
+organize_by_date=true
 
 # Overwrite default configs from noterc configuration file
 NOTERC="${XDG_CONFIG_HOME:-$HOME/.config}/notekeeper/noterc"
 if [ -f "$NOTERC" ]; then source "$NOTERC"; fi
 
-NOTE_DIR="$NOTE_DIR/$YEAR/$MONTH/$DAY"
+BASE_NOTE_DIR=$NOTE_DIR
+if [ "$organize_by_date" = true ]; then
+    NOTE_PATH="$NOTE_DIR/$YEAR/$MONTH/$DAY"
+else
+    NOTE_PATH=$NOTE_DIR
+fi
+
 
 create_note() {
-    if [ ! -f "$NOTE_DIR/$NOTE_NAME" ]; then
-        mkdir -p "$NOTE_DIR"
-        touch "$NOTE_DIR/$NOTE_NAME"
-        printf "%s-%s-%s\n---\n\n" "$DAY" "$MONTH" "$YEAR" > "$NOTE_DIR/$NOTE_NAME"
-        printf "Created new note: %s/%s\n" "$NOTE_DIR" "$NOTE_NAME"
+    if [ ! -f "$NOTE_PATH/$NOTE_NAME" ]; then
+        mkdir -p "$NOTE_PATH"
+        touch "$NOTE_PATH/$NOTE_NAME"
+        printf "%s-%s-%s\n---\n\n" "$DAY" "$MONTH" "$YEAR" > "$NOTE_PATH/$NOTE_NAME"
+        printf "Created new note: %s/%s\n" "$NOTE_PATH" "$NOTE_NAME"
     fi
 }
 
 print_help() {
-    printf "Notekeeper 1.0 (31 March 2021)
+    printf "Notekeeper 1.1 (11 May 2021)
 
 Usage: note [<args>]
 
@@ -46,7 +52,7 @@ Arguments:
        --destroy <FILENAME>           Permanently delete (rm) a note.
 
 Notekeeper loads configuration variables from:
-\$HOME/.config}/notekeeper/noterc.
+\$HOME/.config/notekeeper/noterc.
 
 For more help, see: https://github.com/dcchambers/note-keeper\n"
 }
@@ -208,11 +214,11 @@ else
 fi
 
 if [ "$printNoteOnly" = true ]; then
-    if [ ! -f "$NOTE_DIR/$NOTE_NAME" ]; then
-      printf "Unable to find a note to print in directory: %s\n" "$NOTE_DIR"
+    if [ ! -f "$NOTE_PATH/$NOTE_NAME" ]; then
+      printf "Unable to find a note to print in directory: %s\n" "$NOTE_PATH"
       exit 1
     fi
-    $PRINT_TOOL "$NOTE_DIR/$NOTE_NAME"
+    $PRINT_TOOL "$NOTE_PATH/$NOTE_NAME"
     exit 0
 fi
 
@@ -222,10 +228,10 @@ if [ "$createNoteOnly" = true ]; then
 fi
 
 if [ "$addTimeStamp" = true ]; then
-    printf "[%s]\n" "$(date +%T)" >> "$NOTE_DIR/$NOTE_NAME"
+    printf "[%s]\n" "$(date +%T)" >> "$NOTE_PATH/$NOTE_NAME"
 fi
 
 if [ "$openNote" = true ]; then
     create_note
-    open_note "$NOTE_DIR/$NOTE_NAME"
+    open_note "$NOTE_PATH/$NOTE_NAME"
 fi
