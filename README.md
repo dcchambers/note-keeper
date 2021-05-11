@@ -97,6 +97,7 @@ You can use a `noterc` file to customize Notekeeper!
 
 - Create this file at `${XDG_CONFIG_HOME}/notekeeper/noterc`
   - On MacOS, this will be `~/.config/notekeeper/noterc`
+- [Example noterc file](https://github.com/dcchambers/dotfiles/blob/master/.config/notekeeper/noterc)
 
 The following variables can be set to overwrite Notekeeper defaults:
 
@@ -109,6 +110,9 @@ The following variables can be set to overwrite Notekeeper defaults:
   - The default is `$YEAR-$MONTH-$DAY.md`
 - `PRINT_TOOL`
   - Default is `cat`
+- `organize_by_date`
+  - Default is `true`. Set `organize_by_date=false` if you do not want to use a date-based
+    directory structure for organizing notes.
 
 ## Dependencies
 
