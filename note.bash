@@ -46,7 +46,7 @@ Arguments:
        --destroy <FILENAME>           Permanently delete (rm) a note.
 
 Notekeeper loads configuration variables from:
-\$HOME/.config}/notekeeper/noterc.
+\$HOME/.config/notekeeper/noterc.
 
 For more help, see: https://github.com/dcchambers/note-keeper\n"
 }
