@@ -35,7 +35,7 @@ create_note() {
 }
 
 print_help() {
-    printf "Notekeeper 1.1 (11 May 2021)
+    printf "Notekeeper 1.2 (10 November 2021)
 
 Usage: note [<args>]
 
@@ -50,6 +50,8 @@ Arguments:
   -t | --time                         Add a timestamp when opening a note.
   -d | --delete  <FILENAME>           Move a note to the trash directory.
        --destroy <FILENAME>           Permanently delete (rm) a note.
+  -l | --list   [<File Extension>]    List note files. Defaults to .md files
+                                      if no file extension is specified.
 
 Notekeeper loads configuration variables from:
 \$HOME/.config/notekeeper/noterc.
@@ -133,6 +135,10 @@ destroy_note() {
     fi
 }
 
+list_notes() {
+    find "$BASE_NOTE_DIR" -type f -name "*$1" | sed "s@.*/@@" | sort
+}
+
 openNote=false
 printNoteOnly=false
 createNoteOnly=false
@@ -199,6 +205,15 @@ if (($# > 0)); then
                 exit 1
             fi
             destroy_note "$2"
+            exit 0
+            ;;
+        -l | --list)
+            if [ "$#" -eq 2 ]; then
+                file_extension=$2
+            else
+                file_extension=".md"
+            fi
+            list_notes $file_extension
             exit 0
             ;;
         *)
