@@ -136,9 +136,7 @@ destroy_note() {
 }
 
 list_notes() {
-    for note in $(ls -1 -R $NOTE_DIR | grep "$1"); do
-        printf "$note\n"
-    done
+    find "$BASE_NOTE_DIR" -type f -name "*$1" | sed "s@.*/@@" | sort
 }
 
 openNote=false
