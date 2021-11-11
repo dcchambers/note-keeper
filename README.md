@@ -61,6 +61,8 @@ and will open that note file in Vim.
   - Use the `-d` flag to move a file into trash (`$NOTE_DIR/trash`)
 - `--destroy <FILENAME>`
   - Use the `--destroy` flag to permanently delete a note.
+- `-l | --list [<FILE EXTENSION>]`
+  - Use this `--list` flag to list note files. Defaults to `.md` files if no extension is specified.
 
 ## Demo (Asciinema)
 
