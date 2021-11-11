@@ -26,7 +26,7 @@ brew tap dcchambers/tap
 brew update && brew install notekeeper
 ```
 ### Arch Linux
-
+- Maintained by [Luis Pérez](https://github.com/luisperezmarin) - thank you!
 ```
 paru -S notekeeper
 ```
