@@ -108,13 +108,14 @@ The following variables can be set to overwrite Notekeeper defaults:
 - `EDITOR`
   - By default Notekeeper uses whatever is in your system `$EDITOR` variable,
     and falls back to vim if none is set.
+- `NOTE_FORMAT` - File format (file extension) used to create new notes.
+  - Default is `.md`
 - `NOTE_NAME` - Default name for new notes that are created.
-  - The default is `$YEAR-$MONTH-$DAY.md`
+  - The default is `$YEAR-$MONTH-$DAY.$NOTE_FORMAT`
 - `PRINT_TOOL`
   - Default is `cat`
 - `organize_by_date`
-  - Default is `true`. Set `organize_by_date=false` if you do not want to use a date-based
-    directory structure for organizing notes.
+  - Default is `true`. Set `organize_by_date=false` if you do not want to use a date-based directory structure for organizing notes.
 
 ## Dependencies
 
