@@ -9,7 +9,8 @@ DAY=$(date +'%d')
 
 # Set default configuration
 NOTE_DIR="$HOME/notes"
-NOTE_NAME="$YEAR-$MONTH-$DAY.md"
+NOTE_FORMAT="md"
+NOTE_NAME="$YEAR-$MONTH-$DAY.$NOTE_FORMAT"
 PRINT_TOOL="cat"
 organize_by_date=true
 
@@ -176,6 +177,10 @@ if (($# > 0)); then
             if [ -z "$NOTE_NAME" ]; then
                 printf "Expected additional argument <Note Filename>.\n"
                 exit 1
+            fi
+            pattern='\.[^.]+$'
+            if ! [[ "$NOTE_NAME" =~ $pattern ]]; then
+              NOTE_NAME="$NOTE_NAME.$NOTE_FORMAT"
             fi
             shift
             shift
