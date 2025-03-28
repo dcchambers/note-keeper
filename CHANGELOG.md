@@ -1,12 +1,15 @@
 # CHANGELOG
 
+## v1.3.0 - 27 March 2025
+- feat: Add the ability to customize note file format (62b831f)
+
 ## v1.2.0 - 10 November 2021
 - feat: Implement ability to list note files with -l|--list flag (c171e75)
 
 ## v1.1.0 - 11 May 2021
 - feat: Implement the ability to opt-out of using date-based directory
   organization (5b8b2a5)
-- fix: Fixed a bug when using a custom note directory set in noterc file 
+- fix: Fixed a bug when using a custom note directory set in noterc file
   (eb0da17)
 - fix: Fixed a typo in usage/help printout (1b67567)
 
